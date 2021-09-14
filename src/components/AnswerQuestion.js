@@ -42,7 +42,6 @@ class AnswerQuestion extends Component {
               onChange={this.handleChange}
               style={{ padding: 10, paddingBottom: 20 }}
             />
-          </Container>
           <Button
             disabled={this.state.value === undefined}
             size="tiny"
@@ -51,6 +50,7 @@ class AnswerQuestion extends Component {
           >
             Submit Answer
           </Button>
+          </Container>
         </Form.Group>
       </Form>
     );

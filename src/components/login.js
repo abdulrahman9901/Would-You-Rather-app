@@ -45,7 +45,7 @@ class Login extends Component {
           </p>
         </Header>
         <Image
-          src={require("../../public/images/mainpic.jpg")}
+          src={"/images/mainpic.jpg"}
           height="350"
           width="300"
           centered

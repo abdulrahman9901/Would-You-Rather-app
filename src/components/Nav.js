@@ -12,7 +12,7 @@ class Nav extends Component {
   render() {
     const { name, avatar } = this.props;
     return (
-      <Menu secondary style={{ padding: 10 }}>
+      <Menu secondary style={{ padding: 10 }} style={{maxWidth:1000 , margin:"auto"}} >
         <Menu.Item as={NavLink} exact to={"/"} name="home" />
         <Menu.Item as={NavLink} to={"/add"} name="new question" />
         <Menu.Item as={NavLink} to={"/leaderboard"} name="leader board" />
