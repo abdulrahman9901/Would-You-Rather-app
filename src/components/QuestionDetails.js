@@ -25,7 +25,7 @@ function VoteLabel() {
 
 function SegmentProducer(props) {
   const { voted, optionVotes, totalVotes, optionText } = props;
-  const color = voted ? "green" : "gray";
+  const color = voted ? "green" : "grey";
   return (
     <Segment color={color}>
       {voted && <VoteLabel />}
@@ -52,14 +52,20 @@ class QuestionDetails extends Component {
     });
   };
   render() {
-    if (this.props.authedUser === null) return <Redirect to="/login" />;
+    if (this.props.authedUser === null) 
+    return <Redirect
+      to={{ 
+        pathname: "/login",
+        state: { referrer: this.props.match.url }
+      }}
+  />;
+
 
     if (this.state.redirect) {
       return <Redirect to="/" />;
     }
     const { answers, optionOne, optionTwo, question_id } = this.props;
     const takenOption = answers[question_id];
-    console.log("taken", takenOption);
     return (
       <Fragment>
         <Header
@@ -82,7 +88,7 @@ class QuestionDetails extends Component {
         />
         <Button
           size="small"
-          color="gray"
+          color="grey"
           floated="right"
           onClick={this.handleClick}
         >

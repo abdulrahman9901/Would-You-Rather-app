@@ -4,7 +4,6 @@ import { Segment, Grid, Header, Button, Image } from "semantic-ui-react";
 
 class Question extends Component {
   render() {
-    console.log(this.props);
     const { author, answered, avatar, text, id } = this.props;
     return (
       <Segment.Group>
@@ -12,7 +11,7 @@ class Question extends Component {
           {author} asks :
         </Header>
         <Grid divided padded>
-          <Grid.Column width={5} centered verticalAlign="middle">
+          <Grid.Column width={5} centered="true" verticalAlign="middle">
             <Image src={avatar} />
           </Grid.Column>
           <Grid.Column width={11} textAlign="center">

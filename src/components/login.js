@@ -23,18 +23,20 @@ function optionGenerator(users) {
 class Login extends Component {
   state = {};
   handleChange = (e, { value }) => {
-    console.log(value);
     this.setState({ value });
   };
   handleSubmit = (e) => {
-    console.log(this.props);
     const { dispatch } = this.props;
     dispatch(setAuthedUser(this.state.value));
   };
   render() {
     if (this.props.authedUser !== null) {
-      return <Redirect to="/" />;
+      if(this.props.location.state !== undefined)
+            return <Redirect to={this.props.location.state.referrer} />;
+      else
+          return <Redirect to="/" />;
     }
+  
     return (
       <Segment textAlign="center">
         <Header block>

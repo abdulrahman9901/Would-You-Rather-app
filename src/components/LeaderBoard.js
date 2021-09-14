@@ -5,15 +5,20 @@ import { List } from "semantic-ui-react";
 import { Redirect } from "react-router-dom";
 class LeaderBoard extends Component {
   render() {
-    if (this.props.authedUser === null) return <Redirect to="/login" />;
+    if (this.props.authedUser === null) 
+    return <Redirect
+      to={{ 
+        pathname: "/login",
+        state: { referrer: "/leaderboard" }
+      }}
+  />;
 
     const users = this.props.formattedUsers;
-    console.log(users);
     return (
       <div>
         <List>
           {users.map((user) => (
-            <List.Item>
+            <List.Item key={users.indexOf(user)}>
               <User user={user} position={users.indexOf(user)} />
             </List.Item>
           ))}
@@ -37,7 +42,6 @@ function mapStateToProps({ users, authedUser }) {
       answersNum: Object.keys(user["answers"]).length
     };
   });
-  console.log(formattedUsers);
 
   return { authedUser, formattedUsers };
 }

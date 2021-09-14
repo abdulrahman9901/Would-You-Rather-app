@@ -15,7 +15,6 @@ export class Dashboard extends Component {
     const unAnswered = Object.keys(questions).filter((id) => {
       return !ansId.includes(id);
     });
-    console.log("answered", answered, "unAnswered", unAnswered);
     return (
       <div>
         <ControlTap unansweredId={unAnswered} answeredId={answered} />

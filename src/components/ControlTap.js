@@ -30,7 +30,6 @@ const makePanes = (Answered, UnAnswered) => {
 };
 class ControlTap extends Component {
   render() {
-    console.log(this.props);
     const { Answered, UnAnswered } = this.props;
     return (
       <Grid padded="vertically" columns={1} centered>
@@ -55,9 +54,11 @@ function mapSteteToProps({ users, questions }, { answeredId, unansweredId }) {
       author: user["name"],
       avatar: user["avatarURL"],
       text: question["optionOne"]["text"],
-      id: question["id"]
+      id: question["id"],
+      time:question['timestamp']
     };
   });
+  const sortedAns=Answered.sort((a,b)=> b["time"]- a["time"])
   const UnAnswered = unansweredId.map((ansId) => {
     const question = questions[ansId];
     const user = users[question["author"]];
@@ -65,9 +66,11 @@ function mapSteteToProps({ users, questions }, { answeredId, unansweredId }) {
       author: user["name"],
       avatar: user["avatarURL"],
       text: question["optionOne"]["text"],
-      id: question["id"]
+      id: question["id"],
+      time:question['timestamp']
     };
   });
-  return { Answered, UnAnswered };
+  const sortedUnAns=UnAnswered.sort((a,b)=> b["time"]- a["time"])
+  return { Answered:sortedAns, UnAnswered:sortedUnAns };
 }
 export default connect(mapSteteToProps)(ControlTap);

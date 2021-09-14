@@ -10,7 +10,7 @@ import {
 
 class User extends Component {
   render() {
-    const trophyColor = ["yellow", "gray", "orange"];
+    const trophyColor = ["yellow", "grey", "orange"];
     const { name, avatar, answersNum, questionsNum } = this.props.user;
     const { position } = this.props;
     return (

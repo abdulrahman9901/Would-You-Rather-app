@@ -14,8 +14,7 @@ import Login from "./components/login";
 import NotFound from "./components/404";
 class App extends Component {
   componentDidMount() {
-    const { dispatch } = this.props;
-    dispatch(handleInitialData());
+    this.props.handleInitialData();
   }
   render() {
     const { users, questions } = this.props;
@@ -34,8 +33,8 @@ class App extends Component {
     }
     return (
       <Router>
-        {this.props.authedUser ? <Nav /> : ""}
         <div className="App">
+        {this.props.authedUser ? <Nav /> : ""}
           <Wrapper>
             <Switch>
               <Route path="/login" component={Login} />
@@ -65,4 +64,4 @@ function mapSteteToProps({ users, questions, authedUser }) {
     authedUser
   };
 }
-export default connect(mapSteteToProps)(App);
+export default connect(mapSteteToProps, { handleInitialData })(App);

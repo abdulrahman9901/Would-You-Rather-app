@@ -8,8 +8,6 @@ class AnswerQuestion extends Component {
 
   handleChange = (e, { value }) => this.setState({ value });
   handleSubmit = (e) => {
-    console.log("props", this.props);
-    console.log("state", this.state);
     const { dispatch, authedUser, question_id } = this.props;
     const Answer = {
       authedUser: authedUser["id"],
@@ -19,7 +17,14 @@ class AnswerQuestion extends Component {
     dispatch(handleAnswerQuestion(Answer));
   };
   render() {
-    if (this.props.authedUser === null) return <Redirect to="/login" />;
+    if (this.props.authedUser === null) 
+    return <Redirect
+      to={{ 
+        pathname: "/login",
+        state: { referrer: this.props.match.url }
+      }}
+  />;
+
     const { value } = this.state;
     const { optionOne, optionTwo } = this.props;
     return (

@@ -31,7 +31,7 @@ class Nav extends Component {
           <Menu.Item>
             <Button
               content="Logout"
-              icon="logout"
+              icon="log out"
               labelPosition="right"
               basic
               compact

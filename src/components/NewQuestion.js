@@ -17,14 +17,11 @@ class NewQuestion extends Component {
     redirect: false
   };
   handleChangeInput = (e, { name }) => {
-    // console.log(e.target.value);
     this.setState((prevState) => ({
       [name]: e.target.value
     }));
-    //console.log(this.state);
   };
   handleSubmit = (e) => {
-    console.log(this.state);
     const { firstOption, secondOption } = this.state;
     const { dispatch, authedUser } = this.props;
     const info = {
@@ -32,7 +29,6 @@ class NewQuestion extends Component {
       optionOneText: firstOption,
       optionTwoText: secondOption
     };
-    console.log(info);
     dispatch(handleAddQuestion(info));
     this.setState({
       firstOption: "",
@@ -41,7 +37,14 @@ class NewQuestion extends Component {
     });
   };
   render() {
-    if (this.props.authedUser === null) return <Redirect to="/login" />;
+    if (this.props.authedUser === null) 
+    return <Redirect
+      to={{ 
+        pathname: "/login",
+        state: { referrer: "/add" }
+      }}
+  />;
+
     const { firstOption, secondOption, redirect } = this.state;
     const isdisabled = firstOption === "" || secondOption === "";
     if (redirect) {

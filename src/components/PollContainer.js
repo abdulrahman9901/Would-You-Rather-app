@@ -29,7 +29,15 @@ function Dispatcher(props) {
 }
 class PollContainer extends Component {
   render() {
-    if (this.props.authedUser === null) return <Redirect to="/login" />;
+    if (this.props.authedUser === null) 
+    { 
+      return <Redirect
+      to={{ 
+        pathname: "/login",
+        state: { referrer: this.props.match.url }
+      }}
+  />;
+}
     const { NotFound } = this.props;
     if (NotFound) {
       return <Redirect to="/questions/bad_id" />;
@@ -49,7 +57,7 @@ class PollContainer extends Component {
           {authorName} asks :
         </Header>
         <Grid divided padded>
-          <Grid.Column width={5} centered verticalAlign="middle">
+          <Grid.Column width={5} centered='true' verticalAlign="middle">
             <Image src={authorAvatar} />
           </Grid.Column>
           <Grid.Column width={11} textAlign="center">
@@ -58,7 +66,7 @@ class PollContainer extends Component {
                 Would you rather...
               </Header>
             </Grid.Row>
-            <Grid.Row padded textAlign="left">
+            <Grid.Row padded='true' textAlign="left">
               <Dispatcher
                 answerd={answerd}
                 optionOne={optionOne}
@@ -75,7 +83,6 @@ class PollContainer extends Component {
 }
 function mapStateToProps({ authedUser, questions, users }, props) {
   const { question_id } = props.match.params;
-  console.log("found", questions[question_id]);
   const question = questions[question_id];
   let NotFound = false;
   if (question === undefined) NotFound = true;
